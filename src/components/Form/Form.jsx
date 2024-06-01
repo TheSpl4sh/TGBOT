@@ -8,7 +8,21 @@ const Form = () => {
   const [subject, setSubject] = useState('physical')
   const {tg} = useTelegram()
 
-  const onSendData = useCallback
+  const onSendData = useCallback(() => {
+    const data = {
+      country,
+      street,
+      subject
+    }
+    tg.sendData(JSON.stringify(data))
+  }, [])
+
+  useEffect(() => {
+    tg.onEvent('MainButtonClicked', onSendData)
+    return () => {
+      tg.offEvent('MainButtonClicked', onSendData)
+    }
+  }, [])
 
   useEffect(() => {
     tg.MainButton.setParams({
