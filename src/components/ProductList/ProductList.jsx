@@ -42,7 +42,7 @@ const ProductList = () => {
         tg.MainButton.hide()
       } else {
         tg.MainButton.show()
-        RegExp.MainButton.setParams({
+        tg.MainButton.setParams({
           text: `Buy ${getTotalPrice(newItems)}`
         })
       }
