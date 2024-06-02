@@ -22,12 +22,13 @@ const getTotalPrice = (items = []) => {
 
 const ProductList = () => {
   const [addedItems, setAddedItems] = useState([])
-  const{tg} = useTelegram()
+  const{tg, queryId} = useTelegram()
 
   const onSendData = useCallback(() => {
     const data = {
         products: addedItems,
-        totalPrice: getTotalPrice(data)
+        totalPrice: getTotalPrice(data),
+        queryId 
     }
     fetch('http://localhost:8000', {
       method: POST,
